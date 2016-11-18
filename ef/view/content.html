@@ -1,0 +1,90 @@
+
+<ul id="menu-slide-right-right">
+	<li ng-repeat="x in boards" ng-click="show()">{{x.boardName}}</li>
+</ul>
+
+<div id="small-content" ng-hide="content">
+    <div id="content">
+			
+			<h3>所属板块</h3>
+			<form id="form" class="row">
+					<div class="w12 form-group" id="cb">
+							<span>所有内容<input type="checkbox"class="input_check" id="check1" ng-checked="isCheck(groupSelect1)" ng-model="groupSelect1"><label for="check1"></label></span>
+							<span>通过审核<input type="checkbox"class="input_check" id="check2" ng-checked="isCheck(groupSelect2)" ng-model="groupSelect2"><label for="check2"></label></span>
+							<span>待审核<input type="checkbox"class="input_check" id="check3" ng-checked="isCheck(groupSelect3)" ng-model="groupSelect3"><label for="check3"></label></span>
+							<span>撤销<input type="checkbox"class="input_check" id="check4" ng-checked="isCheck(groupSelect4)" ng-model="groupSelect4"><label for="check4"></label></span>
+					</div>
+
+					<!-- <div class="form-group w4 row">
+						<label class="w4d5">分类一</label>
+						<div class="w7d5">
+							<select class="form-control"  ng-model="selectedName1" ng-options="x.boardName for x in boards">
+							</select>
+						</div>
+					</div>
+					<div class="form-group w4 row">
+						<label class="w4d5">分类二</label>
+						<div class="w7d5">
+							<select class="form-control"  ng-model="selectedName2" ng-options="x for x in types">
+							</select>
+						</div>
+					</div>
+					<div class="form-group w4 row">
+						<label class="w4d5">分类三</label>
+						<div class="w7d5">
+							<select class="form-control"  ng-model="selectedName3" ng-options="x for x in types">
+							</select>
+						</div>
+					</div> -->
+					<div class="form-group w6 row">
+						<label class="w3">分类一</label>
+						<div class="w9">
+							<select class="form-control"  ng-model="selectedName1" ng-options="x.boardName for x in boards">
+							</select>
+						</div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">分类二</label>
+						<div class="w3">
+							<select class="form-control"  ng-model="selectedName2" ng-options="x for x in types">
+							</select>
+						</div>
+					
+						<label class="w3">分类三</label>
+						<div class="w3">
+							<select class="form-control"  ng-model="selectedName3" ng-options="x for x in types">
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group w6 row">
+						<label class="w3">编号</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="c" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">标题</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="c" /></div>
+					</div>
+					<div class="form-group w6 row"></div>
+					<div class="form-group w6 row">
+						<div class="w12"><button class="btn float-right"  ng-click="showClassify()">查找</button></div>
+					</div>
+			</form>
+			<table>
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>来源名称</th>
+						<th>删除</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in items">
+						<td>{{x.a}}</td>
+						<td class="cursorpoint" ng-click="jumpToUrl('/editor')">{{x.b}}</td>
+						<td class="delete"><label><input class="mui-switch mui-switch-animbg" type="checkbox"></label></td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+</div>

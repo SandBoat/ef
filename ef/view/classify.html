@@ -1,0 +1,84 @@
+<!-- <ul id="menu-slide-right-right">
+	<li ng-repeat="x in boards" ng-click="showClassify(x.boardId)">{{x.boardName}}</li>
+</ul> -->
+<!-- <div id="small-content"> -->
+    <div id="content">
+
+			<h3>分类</h3>
+			<form id="form" class="row">
+					<div class="form-group w6 row">
+						<label class="w3">所属板块</label>
+						<div class="w9">
+							<select class="form-control"  ng-model="selectedBoard" ng-options="x.boardName for x in boards">
+							</select>
+						</div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">分类类型</label>
+						<div class="w9">
+							<select class="form-control"  ng-model="selectedType" ng-options="x for x in types">
+							</select>
+						</div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">名称</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="selectedName" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<div class="w12"><button class="btn float-right"  ng-click="showClassify(selectedBoard.boardId,selectedType,selectedName)">查找</button></div>
+					</div>
+			</form>
+			<div id="btn-area">
+				<button class="btn btn-new"  ng-click="editUser('new')">新增</button>
+				<button class="btn">保存</button>
+				<h4 ng-show="edit">新增信息</h4>
+				<h4 ng-hide="edit">修改信息</h4>
+				<form id="form" class="row">
+					<div class="form-group w6 row">
+						<label class="w3">序号</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="classifyId" ng-disabled="!edit" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">分类名称</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="classifyName" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">类型</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="classifyType" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">关键字</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="classifyKey" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">父级名称</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="classifyFather" /></div>
+					</div>
+					
+				</form>
+		
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>分类名称</th>
+						<th>类型</th>
+						<th>关键字</th>
+						<th>父级分类</th>
+						<th>删除</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in classifies">
+						<td>{{x.classifyId}}</td>
+						<td class="cursorpoint" ng-click="editUser(x)">{{x.classifyName}}</td>
+						<td>{{x.classifyType}}</td>
+						<td>{{x.classifyKey}}</td>
+						<td>{{x.classifyFather}}</td>
+						<td class="delete"><label><input class="mui-switch mui-switch-animbg" type="checkbox"></label></td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+<!-- </div> -->

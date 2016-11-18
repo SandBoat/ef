@@ -1,0 +1,73 @@
+<div id="content">
+
+			<h3>系统用户</h3>
+			<form id="form" class="row">
+					<div class="form-group w6 row">
+						<label class="w3">账号</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="userSearchAccount" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">姓名</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="userSearchName" /></div>
+					</div>
+					<div class="form-group w6 row"></div>
+					<div class="form-group w6 row">
+						<div class="w12"><button class="btn float-right"  ng-click="showUser(userSearchAccount,userSearchName)">查找</button></div>
+					</div>
+			</form>
+			<div id="btn-area">
+				<button class="btn btn-new"  ng-click="editUser('new')">新增</button>
+				<button class="btn" ng-click="save(userId,userAccount,userPassword,userName,userTel,userEmail)">保存</button>
+				<h4 ng-show="permission">新增信息</h4>
+				<h4 ng-hide="permission">修改信息</h4>
+				<form id="form" class="row">
+					<div class="form-group w6 row">
+						<label class="w3">用户序号</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="userId" ng-disabled="true" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">用户账号</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="userAccount" ng-disabled="!permission" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">用户密码</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="userPassword" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">用户姓名</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="userName" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">联系电话</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="userTel" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">电子邮件</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="userEmail" /></div>
+					</div>
+				</form>
+		
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>账号</th>
+						<th>姓名</th>
+						<th>联系电话</th>
+						<th>电子邮件</th>
+						<th>删除</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in users">
+						<td>{{x.userId}}</td>
+						<td class="cursorpoint" ng-click="editUser(x)">{{x.userAccount}}</td>
+						<td>{{x.userName}}</td>
+						<td>{{x.userTel}}</td>
+						<td>{{x.userEmail}}</td>
+						<td class="delete"><label><input class="mui-switch mui-switch-animbg" type="checkbox"></label></td>
+					</tr>
+				</tbody>
+			</table>
+	</div>

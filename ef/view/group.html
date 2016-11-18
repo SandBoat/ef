@@ -1,0 +1,134 @@
+<div id="mask" ng-hide="groupuser"></div>
+<div id="content">
+
+			<div id="popup" ng-hide="groupuser">
+				<a id="close" class="cursorpoint" ng-click="closePop()">X</a>
+				<form id="form" class="row">
+					<div class="form-group w6 row">
+						<label class="w3">账号</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="userAccount" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">姓名</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="userName" /></div>
+					</div>
+					<div class="form-group w6 row"></div>
+					<div class="form-group w6 row">
+						<div class="w12"><button class="btn float-right"  ng-click="showGroupUser(userAccount,userName)">查找</button></div>
+					</div>
+				</form>
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>账号</th>
+							<th>姓名</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="x in users">
+							<td>1</td>
+							<td>{{x.userAccount}}</td>
+							<td>{{x.userName}}</td>
+							<td class="delete"><label><input class="mui-switch mui-switch-animbg" type="checkbox"></label></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<h3 id="test">用户组</h3>
+
+			<form id="form" class="row">
+					<div class="form-group w6 row">
+						<label class="w3">所属板块</label>
+						<div class="w9">
+							<select class="form-control"  ng-model="selectBoard" ng-options="x.boardName for x in boards">
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group w6 row">
+						<div class="w12"><button class="btn float-right"  ng-click="showGroup(selectBoard.boardId)">查找</button></div>
+					</div>
+			</form>
+			<div id="btn-area">
+				<button class="btn btn-new"  ng-click="editGroup('new')">新增</button>
+				<button class="btn" ng-click="save(groupId,groupName,groupSelect1,groupSelect2,groupSelect3,groupSelect4,groupSelect5,groupSelect6,groupSelect7,groupSelect8,groupSelect9)">保存</button>
+				<h4 ng-show="group">新增信息</h4>
+				<h4 ng-hide="group">修改信息</h4>
+				<form id="form" class="row">
+					<div class="form-group w6 row">
+						<label class="w3">角色ID</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="groupId" ng-disabled="!edit" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">角色名称</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="groupName" /></div>
+					</div>
+					<div class="form-group w12 row">
+						<div class="w12" id="cb">
+							<span>发布公告<input type="checkbox"class="input_check" id="check1" ng-model="groupSelect1"><label for="check1"></label></span>
+							<span>发布投票<input type="checkbox"class="input_check" id="check2" ng-model="groupSelect2"><label for="check2"></label></span>
+							<span>发布专题<input type="checkbox"class="input_check" id="check3" ng-model="groupSelect3"><label for="check3"></label></span>
+							<span>上传文件<input type="checkbox"class="input_check" id="check4" ng-model="groupSelect4"><label for="check4"></label></span>
+							<span>全局置顶<input type="checkbox"class="input_check" id="check5" ng-model="groupSelect5"><label for="check5"></label></span>
+							<span>局域制定<input type="checkbox"class="input_check" id="check6" ng-model="groupSelect6"><label for="check6"></label></span>
+							<span>分类<input type="checkbox"class="input_check" id="check7" ng-model="groupSelect7"><label for="check7"></label></span>
+							<span>来源<input type="checkbox"class="input_check" id="check8" ng-model="groupSelect8"><label for="check8"></label></span>
+						</div>
+					</div>
+				</form>
+		
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>角色名称</th>
+						<th>发布公告</th>
+						<th>发布投票</th>
+						<th>发布专题</th>
+						<th>上传文件</th>
+						<th>全局置顶</th>
+						<th>局域制定</th>
+						<th>审核回复</th>
+						<th>分类</th>
+						<th>来源</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in groups">
+						<td>{{x.groupId}}</td>
+						<td class="cursorpoint" ng-click="editGroup(x)">{{x.groupName}}</td>
+						<td>{{x.groupSelect1}}</td>
+						<td>{{x.groupSelect2}}</td>
+						<td>{{x.groupSelect3}}</td>
+						<td>{{x.groupSelect4}}</td>
+						<td>{{x.groupSelect5}}</td>
+						<td>{{x.groupSelect6}}</td>
+						<td>{{x.groupSelect7}}</td>
+						<td>{{x.groupSelect8}}</td>
+						<td>{{x.groupSelect9}}</td>
+						<td class="cursorpoint" ng-click="showPop(x)">成员</td>
+						<td class="delete"><label><input class="mui-switch mui-switch-animbg" type="checkbox"></label></td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+
+
+
+	 <!--  $('#menu').on('mousewheel','#content',function(event){
+                                console.log(event);
+                                var scrollTop = this.scrollTop;
+                                        scrollHeight = this.scrollHeight;
+                                        height = this.clientHeight;
+                                        delta = event.originalEvent.wheelDelta;
+
+                                if((delta > 0 && scrollTop - delta <= 0) || (delta < 0 && scrollTop + height >= scrollHeight)){
+                                        this.scrollTop = delta > 0? 0: scrollHeight;
+                                        event.preventDefault();
+                                        //console.log(scrollTop,scrollHeight,height);
+                                }
+                        }); -->

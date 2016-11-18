@@ -1,0 +1,54 @@
+<!-- <div ng-model="text" contenteditable="true"></div>
+ -->
+<ul id="menu-slide-right-right">
+	<li ng-repeat="x in boards" ng-click="show()">{{x.boardName}}</li>
+</ul>
+
+<div id="small-content" ng-hide="editor">
+    <div id="content">
+			
+			<h3>所属板块</h3>
+			<form id="form" class="row">
+					<div class="w12 form-group" id="cb">
+							<span>所有内容<input type="checkbox"class="input_check" id="check1" ng-checked="isCheck(groupSelect1)" ng-model="groupSelect1"><label for="check1"></label></span>
+							<span>通过审核<input type="checkbox"class="input_check" id="check2" ng-checked="isCheck(groupSelect2)" ng-model="groupSelect2"><label for="check2"></label></span>
+							<span>待审核<input type="checkbox"class="input_check" id="check3" ng-checked="isCheck(groupSelect3)" ng-model="groupSelect3"><label for="check3"></label></span>
+							<span>撤销<input type="checkbox"class="input_check" id="check4" ng-checked="isCheck(groupSelect4)" ng-model="groupSelect4"><label for="check4"></label></span>
+					</div>
+
+					<div class="form-group w6 row">
+						<label class="w3">分类一</label>
+						<div class="w9">
+							<select class="form-control"  ng-model="selectedName1" ng-options="x.boardName for x in boards">
+							</select>
+						</div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">分类二</label>
+						<div class="w3">
+							<select class="form-control"  ng-model="selectedName2" ng-options="x for x in types">
+							</select>
+						</div>
+					
+						<label class="w3">分类三</label>
+						<div class="w3">
+							<select class="form-control"  ng-model="selectedName3" ng-options="x for x in types">
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group w6 row">
+						<label class="w3">编号</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="c" /></div>
+					</div>
+					<div class="form-group w6 row">
+						<label class="w3">标题</label>
+						<div class="w9"><input class="form-control" type="text" ng-model="c" /></div>
+					</div>
+			</form>
+			<div ng-model="text" contenteditable="true" id="div1"></div>
+			<div class="form-group w12 row">
+				<div class="w12"><button class="btn float-right"  ng-click="showText(text)">保存</button></div>
+			</div>
+	</div>
+</div>
