@@ -1,110 +1,152 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
+
 <head>
-	<meta charset="UTF-8">
-	<title>ef</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>ef</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="ef frontend">
     <meta name="author" content="hq">
-	
-	<!-- css -->
-	<link rel="stylesheet" href="assets/css/reset.css">
-
-	<link rel="stylesheet" href="assets/dist/css/wangEditor.min.css">
-
-	<link rel="stylesheet" href="assets/css/index.css">
-
-	<!--[if lt IE 9]>
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/dist/css/wangEditor.min.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
 </head>
+
 <body ng-app="routingDemoApp" ng-control="">
-	<div id="main" ng-view="">      
-      
-	</div>
-	<div id="menu" class="clear-float">
-		<ul id="menu-slide-left" class="float-left">
-			<li></li>
-			<a><li id="menu-permission">权限</li></a>
-			<a><li id="menu-board">板块</li></a>
-			<a><li id="menu-classify">分类</li></a>
-			<a><li id="menu-from">来源</li></a>
-			<a><li id="menu-content">内容</li></a>
-		</ul>
-		<div id="menu-slide-right" class="float-left">
-			<ul id="menu-slide-right-left" class="float-left">
-        
-			</ul>
-		</div>
-	</div>
-
-<script src="assets/dist/js/lib/jquery-1.10.2.min.js"></script>
-<script src="assets/dist/js/wangEditor.min.js"></script>
-
-
-<script src="assets/js/wei.js"></script>
-
-
-<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-<script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
-<script>
-	var routingDemoApp = angular.module("routingDemoApp",["ngRoute"]);
+    <div id="main" ng-view="">
+    </div>
+    <div id="menu" class="clear-float">
+        <ul id="menu-slide-left" class="float-left">
+            <li></li>
+            <a>
+                <li id="menu-permission">权限</li>
+            </a>
+            <a>
+                <li id="menu-board">板块</li>
+            </a>
+            <a>
+                <li id="menu-classify">分类</li>
+            </a>
+            <a>
+                <li id="menu-from">来源</li>
+            </a>
+            <a>
+                <li id="menu-content">内容</li>
+            </a>
+        </ul>
+        <div id="menu-slide-right" class="float-left">
+            <ul id="menu-slide-right-left" class="float-left">
+            </ul>
+        </div>
+    </div>
+    <script src="assets/dist/js/lib/jquery-1.10.2.min.js"></script>
+    <script src="assets/dist/js/wangEditor.min.js"></script>
+    <script src="assets/js/wei.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    <script>
+    var routingDemoApp = angular.module("routingDemoApp", ["ngRoute"]);
 
     routingDemoApp.config(function($routeProvider) {
-          $routeProvider
-            .when('/',{
-              templateUrl:'view/main.html',
-              controller:'mainCtrl'
+        $routeProvider
+            .when('/', {
+                templateUrl: 'view/main.html',
+                controller: 'mainCtrl'
             })
-            .when('/user',{
-              templateUrl:'view/user.html',
-              controller:'userCtrl'
+            .when('/user', {
+                templateUrl: 'view/user.html',
+                controller: 'userCtrl'
             })
-            .when('/group',{
-              templateUrl:'view/group.html',
-              controller:'groupCtrl'
+            .when('/group', {
+                templateUrl: 'view/group.html',
+                controller: 'groupCtrl'
             })
-           	.when('/board', {
-            	templateUrl: 'view/board.html',
-            	controller: 'boardCtrl'
-          	})
-            .when('/classify',{
-              templateUrl: 'view/classify.html',
-              controller: 'classifyCtrl'
+            .when('/board', {
+                templateUrl: 'view/board.html',
+                controller: 'boardCtrl'
             })
-            .when('/from',{
-              templateUrl:'view/from.html',
-              controller:'fromCtrl'
+            .when('/classify', {
+                templateUrl: 'view/classify.html',
+                controller: 'classifyCtrl'
             })
-        	 .when('/content', {
-        		  templateUrl: 'view/content.html',
-            	controller: 'contentCtrl'
-         	 })
-           .when('/editor',{
-              templateUrl:'view/editor.html',
-              controller:'editorCtrl'
-           })
+            .when('/from', {
+                templateUrl: 'view/from.html',
+                controller: 'fromCtrl'
+            })
+            .when('/content', {
+                templateUrl: 'view/content.html',
+                controller: 'contentCtrl'
+            })
+            .when('/editor', {
+                templateUrl: 'view/editor.html',
+                controller: 'editorCtrl'
+            })
+            .when('/err', {
+                templateUrl: 'view/err.html',
+                controller: 'errCtrl'
+            })
+            .otherwise({
+                redirectTo: '/err'
+            });
     });
-    routingDemoApp.controller('mainCtrl',function($scope){
-      
-    });
-    routingDemoApp.controller('userCtrl',function($scope){
+    routingDemoApp.controller('mainCtrl', function($scope) {});
+    routingDemoApp.controller('errCtrl', function($scope) {});
+
+    routingDemoApp.controller('userCtrl', function($scope) {
         $scope.permission = false;
         $scope.incomplete = false;
 
-        $scope.showUser = function(userSearchAccount,userSearchName){
-          // 此处请求数据
-          $scope.users = [
-            {userId:'292',userAccount:'0.倩',userName:'凌倩',userTel:'',userEmail:'',userState:'0'},
-            {userId:'3679',userAccount:'00',userName:'  刘书凝',userTel:'',userEmail:'',userState:'0'},
-            {userId:'248',userAccount:'11',userName:'谢梦影',userTel:'',userEmail:'',userState:'0'},
-            {userId:'321',userAccount:'1243923919',userName:'王幸福',userTel:'',userEmail:'',userState:'0'},
-            {userId:'152',userAccount:'186044',userName:'刘晓明',userTel:'',userEmail:'',userState:'0'},
-            {userId:'380',userAccount:'1878017816',userName:'王一帆',userTel:'',userEmail:'',userState:'0'},
-          ];
-          $scope.userSearchAccount = userSearchAccount;
-          $scope.userSearchName = userSearchName;
+        $scope.showUser = function(userSearchAccount, userSearchName) {
+            // 此处请求数据
+            $scope.users = [{
+                userId: '292',
+                userAccount: '0.倩',
+                userName: '凌倩',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '3679',
+                userAccount: '00',
+                userName: '  刘书凝',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '248',
+                userAccount: '11',
+                userName: '谢梦影',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '321',
+                userAccount: '1243923919',
+                userName: '王幸福',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '152',
+                userAccount: '186044',
+                userName: '刘晓明',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '380',
+                userAccount: '1878017816',
+                userName: '王一帆',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, ];
+            $scope.userSearchAccount = userSearchAccount;
+            $scope.userSearchName = userSearchName;
         };
         $scope.userId = '';
         $scope.userPassword = '';
@@ -113,90 +155,289 @@
         $scope.userTel = '';
         $scope.userEmail = '';
         $scope.userPassword = '';
-                
+
         $scope.editUser = function(x) {
-          //console.log(x);
-          if (x == 'new') {
-            $scope.permission = true;
-            $scope.incomplete = true;
-            $scope.userId = '';
-            $scope.userPassword = '';
-            $scope.userAccount = '';
-            $scope.userName = '';
-            $scope.userTel = '';
-            $scope.userEmail = '';
+            //console.log(x);
+            if (x == 'new') {
+                $scope.permission = true;
+                $scope.incomplete = true;
+                $scope.userId = '';
+                $scope.userPassword = '';
+                $scope.userAccount = '';
+                $scope.userName = '';
+                $scope.userTel = '';
+                $scope.userEmail = '';
             } else {
-            $scope.permission = false;
-            $scope.userId = x.userId;
-            $scope.userPassword = '';
-            $scope.userAccount = x.userAccount;
-            $scope.userName = x.userName;
-            $scope.userTel = x.userTel;
-            $scope.userEmail = x.userEmail; 
-          }
+                $scope.permission = false;
+                $scope.userId = x.userId;
+                $scope.userPassword = '';
+                $scope.userAccount = x.userAccount;
+                $scope.userName = x.userName;
+                $scope.userTel = x.userTel;
+                $scope.userEmail = x.userEmail;
+            }
         };
-        $scope.save = function(userId,userAccount,userPassword,userName,userTel,userEmail){
+        $scope.save = function(userId, userAccount, userPassword, userName, userTel, userEmail) {
             // 此处发送数据
         };
     });
-    routingDemoApp.controller('groupCtrl',function($scope){
+    routingDemoApp.controller('groupCtrl', function($scope) {
         $scope.group = false;
         $scope.groupuser = true;
         // 此处请求数据
-        $scope.boards = [
-          {boardId:'2',boardName:'音乐无限'},
-          {boardId:'1',boardName:'在线电影'},
-          {boardId:'3',boardName:'TV下载'}
-        ];
-        $scope.showPop = function(){
-          $scope.groupuser = false;
-          $scope.userAccount = '';
-          $scope.userName = '';
-          $scope.users = [];
+        $scope.boards = [{
+            boardId: '2',
+            boardName: '音乐无限'
+        }, {
+            boardId: '1',
+            boardName: '在线电影'
+        }, {
+            boardId: '3',
+            boardName: 'TV下载'
+        }];
+        $scope.showPop = function() {
+            $scope.groupuser = false;
+            $scope.userAccount = '';
+            $scope.userName = '';
+            $scope.users = [];
         };
-        $scope.closePop = function(){
-          $scope.groupuser = true;
+        $scope.closePop = function() {
+            $scope.groupuser = true;
         };
-        $scope.showGroupUser = function(userAccount,userName){
-          // 此处获取数据
-          $scope.users = [
-            {userId:'292',userAccount:'0.倩',userName:'凌倩',userTel:'',userEmail:'',userState:'0'},
-            {userId:'3679',userAccount:'00',userName:'  刘书凝',userTel:'',userEmail:'',userState:'0'},
-            {userId:'248',userAccount:'11',userName:'谢梦影',userTel:'',userEmail:'',userState:'0'},
-            {userId:'321',userAccount:'1243923919',userName:'王幸福',userTel:'',userEmail:'',userState:'0'},
-            {userId:'152',userAccount:'186044',userName:'刘晓明',userTel:'',userEmail:'',userState:'0'},
-            {userId:'380',userAccount:'1878017816',userName:'王一帆',userTel:'',userEmail:'',userState:'0'},
-            {userId:'292',userAccount:'0.倩',userName:'凌倩',userTel:'',userEmail:'',userState:'0'},
-            {userId:'3679',userAccount:'00',userName:'  刘书凝',userTel:'',userEmail:'',userState:'0'},
-            {userId:'248',userAccount:'11',userName:'谢梦影',userTel:'',userEmail:'',userState:'0'},
-            {userId:'321',userAccount:'1243923919',userName:'王幸福',userTel:'',userEmail:'',userState:'0'},
-            {userId:'152',userAccount:'186044',userName:'刘晓明',userTel:'',userEmail:'',userState:'0'},
-            {userId:'380',userAccount:'1878017816',userName:'王一帆',userTel:'',userEmail:'',userState:'0'},
-            {userId:'292',userAccount:'0.倩',userName:'凌倩',userTel:'',userEmail:'',userState:'0'},
-            {userId:'3679',userAccount:'00',userName:'  刘书凝',userTel:'',userEmail:'',userState:'0'},
-            {userId:'248',userAccount:'11',userName:'谢梦影',userTel:'',userEmail:'',userState:'0'},
-            {userId:'321',userAccount:'1243923919',userName:'王幸福',userTel:'',userEmail:'',userState:'0'},
-            {userId:'152',userAccount:'186044',userName:'刘晓明',userTel:'',userEmail:'',userState:'0'},
-            {userId:'380',userAccount:'1878017816',userName:'王一帆',userTel:'',userEmail:'',userState:'0'}
-          ];
+        $scope.showGroupUser = function(userAccount, userName) {
+            // 此处获取数据
+            $scope.users = [{
+                userId: '292',
+                userAccount: '0.倩',
+                userName: '凌倩',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '3679',
+                userAccount: '00',
+                userName: '  刘书凝',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '248',
+                userAccount: '11',
+                userName: '谢梦影',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '321',
+                userAccount: '1243923919',
+                userName: '王幸福',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '152',
+                userAccount: '186044',
+                userName: '刘晓明',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '380',
+                userAccount: '1878017816',
+                userName: '王一帆',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '292',
+                userAccount: '0.倩',
+                userName: '凌倩',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '3679',
+                userAccount: '00',
+                userName: '  刘书凝',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '248',
+                userAccount: '11',
+                userName: '谢梦影',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '321',
+                userAccount: '1243923919',
+                userName: '王幸福',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '152',
+                userAccount: '186044',
+                userName: '刘晓明',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '380',
+                userAccount: '1878017816',
+                userName: '王一帆',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '292',
+                userAccount: '0.倩',
+                userName: '凌倩',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '3679',
+                userAccount: '00',
+                userName: '  刘书凝',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '248',
+                userAccount: '11',
+                userName: '谢梦影',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '321',
+                userAccount: '1243923919',
+                userName: '王幸福',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '152',
+                userAccount: '186044',
+                userName: '刘晓明',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }, {
+                userId: '380',
+                userAccount: '1878017816',
+                userName: '王一帆',
+                userTel: '',
+                userEmail: '',
+                userState: '0'
+            }];
         };
-        $scope.showGroup = function(boardId){
-          //console.log(boardId);
-          if(typeof(boardId) == "undefined"){
-              alert("请选择板块");
-          }else{
-            // 此处请求信息
-            $scope.groups = [
-              {groupId:'3',groupName:'BoardManager',groupSelect1:'1',groupSelect2:'1',groupSelect3:'1',groupSelect4:'1',groupSelect5:'1',groupSelect6:'1',groupSelect7:'1',groupSelect8:'1',groupSelect9:'1'},
-              {groupId:'71',groupName:'音乐网新人',groupSelect1:'0',groupSelect2:'0',groupSelect3:'0',groupSelect4:'1',groupSelect5:'0',groupSelect6:'0',groupSelect7:'0',groupSelect8:'1',groupSelect9:'1'},
-              {groupId:'3',groupName:'BoardManager',groupSelect1:'1',groupSelect2:'1',groupSelect3:'1',groupSelect4:'1',groupSelect5:'1',groupSelect6:'1',groupSelect7:'1',groupSelect8:'1',groupSelect9:'1'},
-              {groupId:'71',groupName:'音乐网新人',groupSelect1:'0',groupSelect2:'0',groupSelect3:'0',groupSelect4:'1',groupSelect5:'0',groupSelect6:'0',groupSelect7:'0',groupSelect8:'1',groupSelect9:'1'},
-              {groupId:'3',groupName:'BoardManager',groupSelect1:'1',groupSelect2:'1',groupSelect3:'1',groupSelect4:'1',groupSelect5:'1',groupSelect6:'1',groupSelect7:'1',groupSelect8:'1',groupSelect9:'1'},
-              {groupId:'71',groupName:'音乐网新人',groupSelect1:'0',groupSelect2:'0',groupSelect3:'0',groupSelect4:'1',groupSelect5:'0',groupSelect6:'0',groupSelect7:'0',groupSelect8:'1',groupSelect9:'1'},
-              {groupId:'3',groupName:'BoardManager',groupSelect1:'1',groupSelect2:'1',groupSelect3:'1',groupSelect4:'1',groupSelect5:'1',groupSelect6:'1',groupSelect7:'1',groupSelect8:'1',groupSelect9:'1'},
-              {groupId:'71',groupName:'音乐网新人',groupSelect1:'0',groupSelect2:'0',groupSelect3:'0',groupSelect4:'1',groupSelect5:'0',groupSelect6:'0',groupSelect7:'0',groupSelect8:'1',groupSelect9:'1'},
-          ];
-        }
+        $scope.showGroup = function(boardId) {
+            //console.log(boardId);
+            if (typeof(boardId) == "undefined") {
+                alert("请选择板块");
+            } else {
+                // 此处请求信息
+                $scope.groups = [{
+                    groupId: '3',
+                    groupName: 'BoardManager',
+                    groupSelect1: '1',
+                    groupSelect2: '1',
+                    groupSelect3: '1',
+                    groupSelect4: '1',
+                    groupSelect5: '1',
+                    groupSelect6: '1',
+                    groupSelect7: '1',
+                    groupSelect8: '1',
+                    groupSelect9: '1'
+                }, {
+                    groupId: '71',
+                    groupName: '音乐网新人',
+                    groupSelect1: '0',
+                    groupSelect2: '0',
+                    groupSelect3: '0',
+                    groupSelect4: '1',
+                    groupSelect5: '0',
+                    groupSelect6: '0',
+                    groupSelect7: '0',
+                    groupSelect8: '1',
+                    groupSelect9: '1'
+                }, {
+                    groupId: '3',
+                    groupName: 'BoardManager',
+                    groupSelect1: '1',
+                    groupSelect2: '1',
+                    groupSelect3: '1',
+                    groupSelect4: '1',
+                    groupSelect5: '1',
+                    groupSelect6: '1',
+                    groupSelect7: '1',
+                    groupSelect8: '1',
+                    groupSelect9: '1'
+                }, {
+                    groupId: '71',
+                    groupName: '音乐网新人',
+                    groupSelect1: '0',
+                    groupSelect2: '0',
+                    groupSelect3: '0',
+                    groupSelect4: '1',
+                    groupSelect5: '0',
+                    groupSelect6: '0',
+                    groupSelect7: '0',
+                    groupSelect8: '1',
+                    groupSelect9: '1'
+                }, {
+                    groupId: '3',
+                    groupName: 'BoardManager',
+                    groupSelect1: '1',
+                    groupSelect2: '1',
+                    groupSelect3: '1',
+                    groupSelect4: '1',
+                    groupSelect5: '1',
+                    groupSelect6: '1',
+                    groupSelect7: '1',
+                    groupSelect8: '1',
+                    groupSelect9: '1'
+                }, {
+                    groupId: '71',
+                    groupName: '音乐网新人',
+                    groupSelect1: '0',
+                    groupSelect2: '0',
+                    groupSelect3: '0',
+                    groupSelect4: '1',
+                    groupSelect5: '0',
+                    groupSelect6: '0',
+                    groupSelect7: '0',
+                    groupSelect8: '1',
+                    groupSelect9: '1'
+                }, {
+                    groupId: '3',
+                    groupName: 'BoardManager',
+                    groupSelect1: '1',
+                    groupSelect2: '1',
+                    groupSelect3: '1',
+                    groupSelect4: '1',
+                    groupSelect5: '1',
+                    groupSelect6: '1',
+                    groupSelect7: '1',
+                    groupSelect8: '1',
+                    groupSelect9: '1'
+                }, {
+                    groupId: '71',
+                    groupName: '音乐网新人',
+                    groupSelect1: '0',
+                    groupSelect2: '0',
+                    groupSelect3: '0',
+                    groupSelect4: '1',
+                    groupSelect5: '0',
+                    groupSelect6: '0',
+                    groupSelect7: '0',
+                    groupSelect8: '1',
+                    groupSelect9: '1'
+                }, ];
+            }
         };
         $scope.groupId = '';
         $scope.groupName = '';
@@ -209,140 +450,205 @@
         $scope.groupSelect7 = '';
         $scope.groupSelect8 = '';
         $scope.groupSelect9 = '';
-        
-        $scope.isChecked = function(groupselect){
-          //console.log(groupselect);
-          if(typeof(groupselect) == 'string'){
-            if(groupselect == 'true')
-              return true;
-            else
-              return false;
-          }
-          else
-              return groupselect;
+
+        $scope.isChecked = function(groupselect) {
+            //console.log(groupselect);
+            if (typeof(groupselect) == 'string') {
+                if (groupselect == 'true')
+                    return true;
+                else
+                    return false;
+            } else
+                return groupselect;
         };
-        
-        $scope.changeCheck = function(groupselect){
-          if($scope.groupSelect1 == 0)
-            $scope.groupSelect1 = 1;
-          else
-            $scope.groupSelect1 = 0;
+
+        $scope.changeCheck = function(groupselect) {
+            if ($scope.groupSelect1 == 0)
+                $scope.groupSelect1 = 1;
+            else
+                $scope.groupSelect1 = 0;
         };
         $scope.editGroup = function(x) {
-          //console.log(x);
-          if (x == 'new') {
-            $scope.group = true;
-            $scope.incomplete = true;
-            $scope.groupId = '';
-            $scope.groupName = '';
-            $scope.groupSelect1 = '';
-            $scope.groupSelect2 = '';
-            $scope.groupSelect3 = '';
-            $scope.groupSelect4 = '';
-            $scope.groupSelect5 = '';
-            $scope.groupSelect6 = '';
-            $scope.groupSelect7 = '';
-            $scope.groupSelect8 = '';
-            $scope.groupSelect9 = '';
+            //console.log(x);
+            if (x == 'new') {
+                $scope.group = true;
+                $scope.incomplete = true;
+                $scope.groupId = '';
+                $scope.groupName = '';
+                $scope.groupSelect1 = '';
+                $scope.groupSelect2 = '';
+                $scope.groupSelect3 = '';
+                $scope.groupSelect4 = '';
+                $scope.groupSelect5 = '';
+                $scope.groupSelect6 = '';
+                $scope.groupSelect7 = '';
+                $scope.groupSelect8 = '';
+                $scope.groupSelect9 = '';
             } else {
-            $scope.group = false;
+                $scope.group = false;
 
-            $scope.groupId = x.groupId;
-            $scope.groupName = x.groupName;
-            if (x.groupSelect1 == 'true'|| x.groupSelect1 == true) {
-              $scope.groupSelect1 = true;
-            }else{$scope.groupSelect1 = false;};
-            //$scope.groupSelect1 = x.groupSelect1;
-            if (x.groupSelect2 == 'true'|| x.groupSelect2 == true) {
-              $scope.groupSelect2 = true;
-            }else{$scope.groupSelect2 = false;};
-            if (x.groupSelect3 == 'true'|| x.groupSelect3 == true) {
-              $scope.groupSelect3 = true;
-            }else{$scope.groupSelect3 = false;};
-            if (x.groupSelect4 == 'true'|| x.groupSelect4 == true) {
-              $scope.groupSelect4 = true;
-            }else{$scope.groupSelect4 = false;};
-            if (x.groupSelect5 == 'true'|| x.groupSelect5 == true) {
-              $scope.groupSelect5 = true;
-            }else{$scope.groupSelect5 = false;};
-            if (x.groupSelect6 == 'true'|| x.groupSelect6 == true) {
-              $scope.groupSelect6 = true;
-            }else{$scope.groupSelect6 = false;};
-            if (x.groupSelect7 == 'true'|| x.groupSelect7 == true) {
-              $scope.groupSelect7 = true;
-            }else{$scope.groupSelect1 = false;};
-            if (x.groupSelect8 == 'true'|| x.groupSelect8 == true) {
-              $scope.groupSelect8 = true;
-            }else{$scope.groupSelect1 = false;};
-            if (x.groupSelect9 == 'true'|| x.groupSelect9 == true) {
-              $scope.groupSelect9 = true;
-            }else{$scope.groupSelect1 = false;};
-          }
+                $scope.groupId = x.groupId;
+                $scope.groupName = x.groupName;
+                if (x.groupSelect1 == 'true' || x.groupSelect1 == true) {
+                    $scope.groupSelect1 = true;
+                } else {
+                    $scope.groupSelect1 = false;
+                };
+                //$scope.groupSelect1 = x.groupSelect1;
+                if (x.groupSelect2 == 'true' || x.groupSelect2 == true) {
+                    $scope.groupSelect2 = true;
+                } else {
+                    $scope.groupSelect2 = false;
+                };
+                if (x.groupSelect3 == 'true' || x.groupSelect3 == true) {
+                    $scope.groupSelect3 = true;
+                } else {
+                    $scope.groupSelect3 = false;
+                };
+                if (x.groupSelect4 == 'true' || x.groupSelect4 == true) {
+                    $scope.groupSelect4 = true;
+                } else {
+                    $scope.groupSelect4 = false;
+                };
+                if (x.groupSelect5 == 'true' || x.groupSelect5 == true) {
+                    $scope.groupSelect5 = true;
+                } else {
+                    $scope.groupSelect5 = false;
+                };
+                if (x.groupSelect6 == 'true' || x.groupSelect6 == true) {
+                    $scope.groupSelect6 = true;
+                } else {
+                    $scope.groupSelect6 = false;
+                };
+                if (x.groupSelect7 == 'true' || x.groupSelect7 == true) {
+                    $scope.groupSelect7 = true;
+                } else {
+                    $scope.groupSelect1 = false;
+                };
+                if (x.groupSelect8 == 'true' || x.groupSelect8 == true) {
+                    $scope.groupSelect8 = true;
+                } else {
+                    $scope.groupSelect1 = false;
+                };
+                if (x.groupSelect9 == 'true' || x.groupSelect9 == true) {
+                    $scope.groupSelect9 = true;
+                } else {
+                    $scope.groupSelect1 = false;
+                };
+            }
         };
-        $scope.save = function(groupId,groupName,groupSelect1,groupSelect2,groupSelect3,groupSelect4,groupSelect5,groupSelect6,groupSelect7,groupSelect8,groupSelect9){
-          // 此处发送数据
-          console.log(groupId,groupName,groupSelect1,groupSelect2,groupSelect3,groupSelect4,groupSelect5,groupSelect6,groupSelect7,groupSelect8,groupSelect9);
+        $scope.save = function(groupId, groupName, groupSelect1, groupSelect2, groupSelect3, groupSelect4, groupSelect5, groupSelect6, groupSelect7, groupSelect8, groupSelect9) {
+            // 此处发送数据
+            console.log(groupId, groupName, groupSelect1, groupSelect2, groupSelect3, groupSelect4, groupSelect5, groupSelect6, groupSelect7, groupSelect8, groupSelect9);
         };
     });
-    routingDemoApp.controller('boardCtrl',function($scope) {
-    		$scope.boardId = '';
+    routingDemoApp.controller('boardCtrl', function($scope) {
+        $scope.boardId = '';
         $scope.boardName = '';
         $scope.boardType = '';
         $scope.boardPic = '';
         $scope.boardCheck = '';
-        $scope.boards = [
-        {boardId:'2',boardName:'板块1',boardType:'文件',boardPic:'d:/img/music',boardCheck:'未审核'},
-        {boardId:'1',boardName:'板块3',boardType:'文件',boardPic:'d:/img/lit',boardCheck:'已审核'},
-        {boardId:'3',boardName:'模块2',boardType:'图片',boardPic:'e',boardCheck:'未审核'}
-        ];
+        $scope.boards = [{
+            boardId: '2',
+            boardName: '板块1',
+            boardType: '文件',
+            boardPic: 'd:/img/music',
+            boardCheck: '未审核'
+        }, {
+            boardId: '1',
+            boardName: '板块3',
+            boardType: '文件',
+            boardPic: 'd:/img/lit',
+            boardCheck: '已审核'
+        }, {
+            boardId: '3',
+            boardName: '模块2',
+            boardType: '图片',
+            boardPic: 'e',
+            boardCheck: '未审核'
+        }];
         $scope.edit = true;
         $scope.error = false;
-        $scope.incomplete = false; 
+        $scope.incomplete = false;
         $scope.editUser = function(x) {
-          if (x == 'new') {
-            $scope.edit = true;
-            $scope.incomplete = true;
-            $scope.boardId = '';
-            $scope.boardName = '';
-            $scope.boardType = '';
-            $scope.boardPic = '';
-            $scope.boardCheck = '';
+            if (x == 'new') {
+                $scope.edit = true;
+                $scope.incomplete = true;
+                $scope.boardId = '';
+                $scope.boardName = '';
+                $scope.boardType = '';
+                $scope.boardPic = '';
+                $scope.boardCheck = '';
             } else {
-            $scope.edit = false;
-            $scope.boardId = x.boardId;
-            $scope.boardName = x.boardName;
-            $scope.boardType = x.boardType;
-            $scope.boardPic = x.boardPic;
-            $scope.boardCheck = x.boardCheck; 
-          }
+                $scope.edit = false;
+                $scope.boardId = x.boardId;
+                $scope.boardName = x.boardName;
+                $scope.boardType = x.boardType;
+                $scope.boardPic = x.boardPic;
+                $scope.boardCheck = x.boardCheck;
+            }
         };
-        $scope.save = function(boardId,boardName,boardPic,boardType,boardCheck){
+        $scope.save = function(boardId, boardName, boardPic, boardType, boardCheck) {
             // 此处发送数据
         };
-	   });
-    routingDemoApp.controller('classifyCtrl',function($scope){
+    });
+    routingDemoApp.controller('classifyCtrl', function($scope) {
         // 此处请求信息
-        $scope.boards = [
-          {boardId:'2',boardName:'音乐无限'},
-          {boardId:'1',boardName:'在线电影'},
-          {boardId:'3',boardName:'TV下载'}
-        ];
-        $scope.types = ['1','2','3'];
+        $scope.boards = [{
+            boardId: '2',
+            boardName: '音乐无限'
+        }, {
+            boardId: '1',
+            boardName: '在线电影'
+        }, {
+            boardId: '3',
+            boardName: 'TV下载'
+        }];
+        $scope.types = ['1', '2', '3'];
 
-        $scope.showClassify = function(borderid,type,name){
-          if(typeof(borderid) == 'undefined'){
-            alert("请选择板块");
-          }else{
-            // 此处请求数据
-            $scope.classifies = [
-            {classifyId:'2',classifyName:'分类1',classifyType:'文件',classifyKey:'关键字2',classifyFather:'我爹'},
-            {classifyId:'1',classifyName:'分类3',classifyType:'文件',classifyKey:'关键字10086',classifyFather:'你爹'},
-            {classifyId:'3',classifyName:'分类2',classifyType:'图片',classifyKey:'关键字1',classifyFather:'他爹'},
-            {classifyId:'2',classifyName:'分类1',classifyType:'文件',classifyKey:'关键字2',classifyFather:'我爹'},
-            {classifyId:'1',classifyName:'分类3',classifyType:'文件',classifyKey:'关键字10086',classifyFather:'你爹'},
-            {classifyId:'3',classifyName:'分类2',classifyType:'图片',classifyKey:'关键字1',classifyFather:'他爹'}
-            ];
-          }
+        $scope.showClassify = function(borderid, type, name) {
+            if (typeof(borderid) == 'undefined') {
+                alert("请选择板块");
+            } else {
+                // 此处请求数据
+                $scope.classifies = [{
+                    classifyId: '2',
+                    classifyName: '分类1',
+                    classifyType: '文件',
+                    classifyKey: '关键字2',
+                    classifyFather: '我爹'
+                }, {
+                    classifyId: '1',
+                    classifyName: '分类3',
+                    classifyType: '文件',
+                    classifyKey: '关键字10086',
+                    classifyFather: '你爹'
+                }, {
+                    classifyId: '3',
+                    classifyName: '分类2',
+                    classifyType: '图片',
+                    classifyKey: '关键字1',
+                    classifyFather: '他爹'
+                }, {
+                    classifyId: '2',
+                    classifyName: '分类1',
+                    classifyType: '文件',
+                    classifyKey: '关键字2',
+                    classifyFather: '我爹'
+                }, {
+                    classifyId: '1',
+                    classifyName: '分类3',
+                    classifyType: '文件',
+                    classifyKey: '关键字10086',
+                    classifyFather: '你爹'
+                }, {
+                    classifyId: '3',
+                    classifyName: '分类2',
+                    classifyType: '图片',
+                    classifyKey: '关键字1',
+                    classifyFather: '他爹'
+                }];
+            }
         }
         $scope.classifyId = '';
         $scope.classifyName = '';
@@ -352,95 +658,139 @@
 
         $scope.edit = true;
         $scope.error = false;
-        $scope.incomplete = false; 
+        $scope.incomplete = false;
         $scope.editUser = function(x) {
-          if (x == 'new') {
-            $scope.edit = true;
-            $scope.incomplete = true;
-            $scope.classifyId = '';
-            $scope.classifyName = '';
-            $scope.classifyType = '';
-            $scope.classifyKey = '';
-            $scope.classifyFather = '';
+            if (x == 'new') {
+                $scope.edit = true;
+                $scope.incomplete = true;
+                $scope.classifyId = '';
+                $scope.classifyName = '';
+                $scope.classifyType = '';
+                $scope.classifyKey = '';
+                $scope.classifyFather = '';
             } else {
-            $scope.edit = false;
-            $scope.classifyId = x.classifyId;
-            $scope.classifyName = x.classifyName;
-            $scope.classifyType = x.classifyType;
-            $scope.classifyKey = x.classifyKey;
-            $scope.classifyFather = x.classifyFather; 
-          }
+                $scope.edit = false;
+                $scope.classifyId = x.classifyId;
+                $scope.classifyName = x.classifyName;
+                $scope.classifyType = x.classifyType;
+                $scope.classifyKey = x.classifyKey;
+                $scope.classifyFather = x.classifyFather;
+            }
         };
     });
-    routingDemoApp.controller('fromCtrl' , function($scope){
+    routingDemoApp.controller('fromCtrl', function($scope) {
         // 此处请求数据
-          $scope.boards = [
-            {boardId:'2',boardName:'音乐无限'},
-            {boardId:'1',boardName:'在线电影'},
-            {boardId:'3',boardName:'TV下载'}
-          ];
-          $scope.showClassify = function(boardid,name){
-            if(typeof(boardid) == 'undefined'){
-              alert("请选择板块");
-            }else{
-              // 此处请求信息
-              $scope.froms = [
-                {fromId:'2',fromName:'aaa'},
-                {fromId:'1',fromName:'bbb'},
-                {fromId:'3',fromName:'ccc'}
-              ];
+        $scope.boards = [{
+            boardId: '2',
+            boardName: '音乐无限'
+        }, {
+            boardId: '1',
+            boardName: '在线电影'
+        }, {
+            boardId: '3',
+            boardName: 'TV下载'
+        }];
+        $scope.showClassify = function(boardid, name) {
+            if (typeof(boardid) == 'undefined') {
+                alert("请选择板块");
+            } else {
+                // 此处请求信息
+                $scope.froms = [{
+                    fromId: '2',
+                    fromName: 'aaa'
+                }, {
+                    fromId: '1',
+                    fromName: 'bbb'
+                }, {
+                    fromId: '3',
+                    fromName: 'ccc'
+                }];
             }
-          }
-          $scope.fromId = '';
-          $scope.fromName = '';
+        }
+        $scope.fromId = '';
+        $scope.fromName = '';
 
-          $scope.edit = true;
-          $scope.error = false;
-          $scope.incomplete = false; 
-          $scope.editUser = function(x) {
+        $scope.edit = true;
+        $scope.error = false;
+        $scope.incomplete = false;
+        $scope.editUser = function(x) {
             if (x == 'new') {
-              $scope.edit = true;
-              $scope.incomplete = true;
-              $scope.fromId = '';
-              $scope.fromName = '';
-              } else {
-              $scope.edit = false;
-              $scope.fromId = x.fromId;
-              $scope.fromName = x.fromName;
+                $scope.edit = true;
+                $scope.incomplete = true;
+                $scope.fromId = '';
+                $scope.fromName = '';
+            } else {
+                $scope.edit = false;
+                $scope.fromId = x.fromId;
+                $scope.fromName = x.fromName;
             }
-          };
-          $scope.save = function(fromid,fromname){
+        };
+        $scope.save = function(fromid, fromname) {
             // 此处发送数据
-          };
+        };
     });
 
-    routingDemoApp.factory('dataService',function(){
+    routingDemoApp.factory('dataService', function() {
         return {
-            golbal_editor : true,
+            golbal_editor: true,
         }
     });
 
-    routingDemoApp.controller('contentCtrl', ['$scope','dataService','$location',function($scope,dataService,$location) {
-        $scope.boards = [
-          {boardId:'2',boardName:'音乐无限'},
-          {boardId:'1',boardName:'在线电影'},
-          {boardId:'3',boardName:'TV下载'}
-        ];
+    routingDemoApp.controller('contentCtrl', ['$scope', 'dataService', '$location', function($scope, dataService, $location) {
+        $scope.boards = [{
+            boardId: '2',
+            boardName: '音乐无限'
+        }, {
+            boardId: '1',
+            boardName: '在线电影'
+        }, {
+            boardId: '3',
+            boardName: 'TV下载'
+        }];
         $scope.content = true;
-        $scope.types = ['1','2','3'];
-        $scope.show = function(){
-          $scope.content = false;
-          $scope.items = [];
+        $scope.types = ['1', '2', '3'];
+        $scope.show = function() {
+            $scope.content = false;
+            $scope.items = [];
         }
-        $scope.showClassify = function(boardId){
-          $scope.items = [
-          {a:'2',b:'分类1',c:'文件',d:'关键字2',e:'我爹'},
-          {a:'1',b:'分类3',c:'文件',d:'关键字10086',e:'你爹'},
-          {a:'3',b:'分类2',c:'图片',d:'关键字1',e:'他爹'},
-          {a:'2',b:'分类1',c:'文件',d:'关键字2',e:'我爹'},
-          {a:'1',b:'分类3',c:'文件',d:'关键字10086',e:'你爹'},
-          {a:'3',b:'分类2',c:'图片',d:'关键字1',e:'他爹'}
-        ];
+        $scope.showClassify = function(boardId) {
+            $scope.items = [{
+                a: '2',
+                b: '分类1',
+                c: '文件',
+                d: '关键字2',
+                e: '我爹'
+            }, {
+                a: '1',
+                b: '分类3',
+                c: '文件',
+                d: '关键字10086',
+                e: '你爹'
+            }, {
+                a: '3',
+                b: '分类2',
+                c: '图片',
+                d: '关键字1',
+                e: '他爹'
+            }, {
+                a: '2',
+                b: '分类1',
+                c: '文件',
+                d: '关键字2',
+                e: '我爹'
+            }, {
+                a: '1',
+                b: '分类3',
+                c: '文件',
+                d: '关键字10086',
+                e: '你爹'
+            }, {
+                a: '3',
+                b: '分类2',
+                c: '图片',
+                d: '关键字1',
+                e: '他爹'
+            }];
         }
         $scope.jumpToUrl = function(path) {
             $location.path(path);
@@ -454,94 +804,98 @@
         $scope.names = ["Google", "Runoob", "Taobao"];
         $scope.edit = true;
         $scope.error = false;
-        $scope.incomplete = false; 
+        $scope.incomplete = false;
         $scope.editUser = function(id) {
-          if (id == 'new') {
-            $scope.edit = true;
-            $scope.incomplete = true;
-            $scope.a = '';
-            $scope.b = '';
-            $scope.c = '';
-            $scope.d = '';
-            $scope.e = '';
+            if (id == 'new') {
+                $scope.edit = true;
+                $scope.incomplete = true;
+                $scope.a = '';
+                $scope.b = '';
+                $scope.c = '';
+                $scope.d = '';
+                $scope.e = '';
             } else {
-            $scope.edit = false;
-            $scope.a = $scope.items[id-1].a;
-            $scope.b = $scope.items[id-1].b;
-            $scope.c = $scope.items[id-1].c;
-            $scope.d = $scope.items[id-1].d;
-            $scope.e = $scope.items[id-1].e; 
-          }
+                $scope.edit = false;
+                $scope.a = $scope.items[id - 1].a;
+                $scope.b = $scope.items[id - 1].b;
+                $scope.c = $scope.items[id - 1].c;
+                $scope.d = $scope.items[id - 1].d;
+                $scope.e = $scope.items[id - 1].e;
+            }
         };
     }]);
-    routingDemoApp.controller('editorCtrl',['$scope','dataService',function($scope,dataService){
-        $scope.boards = [
-          {boardId:'2',boardName:'音乐无限'},
-          {boardId:'1',boardName:'在线电影'},
-          {boardId:'3',boardName:'TV下载'}
-        ];
+    routingDemoApp.controller('editorCtrl', ['$scope', 'dataService', function($scope, dataService) {
+        $scope.boards = [{
+            boardId: '2',
+            boardName: '音乐无限'
+        }, {
+            boardId: '1',
+            boardName: '在线电影'
+        }, {
+            boardId: '3',
+            boardName: 'TV下载'
+        }];
         $scope.editor = dataService.golbal_editor;
-        $scope.show = function(){
-          $scope.editor = false;
-          $scope.items = [];
+        $scope.show = function() {
+            $scope.editor = false;
+            $scope.items = [];
         }
-        $scope.showText = function(text){
-          //console.log(text);
-          $scope.text = '<font color="#ff0000">aa</font><p><br></p>';
+        $scope.showText = function(text) {
+            //console.log(text);
+            $scope.text = '<font color="#ff0000">aa</font><p><br></p>';
         };
     }]);
     routingDemoApp.directive('contenteditable', function() {
-            return {
-                restrict: 'A' ,
-                require: '?ngModel',
-                link: function(scope, element, attrs, ngModel) {
-                    // 初始化 编辑器内容
-                    if (!ngModel) {
-                        return;
-                    } // do nothing if no ng-model
-                    // Specify how UI should be updated
-                    ngModel.$render = function() {
-                        element.html(ngModel.$viewValue || '');
-                    };
-                    // Listen for change events to enable binding
-                    element.on('blur keyup change', function() {
-                        scope.$apply(readViewText);
-                    });
-                    // No need to initialize, AngularJS will initialize the text based on ng-model attribute
-                    // Write data to the model
-                    function readViewText() {
-                        var html = element.html();
-                        // When we clear the content editable the browser leaves a <br> behind
-                        // If strip-br attribute is provided then we strip this out
-                        if (attrs.stripBr && html === '<br>') {
-                            html = '';
-                        }
-                        ngModel.$setViewValue(html);
+        return {
+            restrict: 'A',
+            require: '?ngModel',
+            link: function(scope, element, attrs, ngModel) {
+                // 初始化 编辑器内容
+                if (!ngModel) {
+                    return;
+                } // do nothing if no ng-model
+                // Specify how UI should be updated
+                ngModel.$render = function() {
+                    element.html(ngModel.$viewValue || '');
+                };
+                // Listen for change events to enable binding
+                element.on('blur keyup change', function() {
+                    scope.$apply(readViewText);
+                });
+                // No need to initialize, AngularJS will initialize the text based on ng-model attribute
+                // Write data to the model
+                function readViewText() {
+                    var html = element.html();
+                    // When we clear the content editable the browser leaves a <br> behind
+                    // If strip-br attribute is provided then we strip this out
+                    if (attrs.stripBr && html === '<br>') {
+                        html = '';
                     }
-        
-                    // 创建编辑器
-                    var editor = new wangEditor(element);
-                    editor.config.menus = [
-                        'source',
-                        '|',
-                        'bold',
-                        'underline',
-                        'italic',
-                        'strikethrough',
-                        'eraser',
-                        'forecolor',
-                        'bgcolor'
-                     ];
-                     wangEditor.config.printLog = false;
-                     editor.config.codeDefaultLang = 'javascript';
-
-                    editor.create();
-                    // $('#div1').attr('style','height:350px;');
+                    ngModel.$setViewValue(html);
                 }
-            };
-        });
-</script>
 
+                // 创建编辑器
+                var editor = new wangEditor(element);
+                editor.config.menus = [
+                    'source',
+                    '|',
+                    'bold',
+                    'underline',
+                    'italic',
+                    'strikethrough',
+                    'eraser',
+                    'forecolor',
+                    'bgcolor'
+                ];
+                wangEditor.config.printLog = false;
+                editor.config.codeDefaultLang = 'javascript';
 
+                editor.create();
+                // $('#div1').attr('style','height:350px;');
+            }
+        };
+    });
+    </script>
 </body>
+
 </html>
