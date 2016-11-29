@@ -48,51 +48,96 @@
     <script src="assets/js/wei.js"></script>
     <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
     <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    <script src="assets/js/script.js"></script>
     <script>
+    var nRd;
     var routingDemoApp = angular.module("routingDemoApp", ["ngRoute"]);
 
     routingDemoApp.config(function($routeProvider) {
         $routeProvider
-            .when('/', {
-                templateUrl: 'view/main.html',
-                controller: 'mainCtrl'
-            })
-            .when('/user', {
-                templateUrl: 'view/user.html',
-                controller: 'userCtrl'
-            })
-            .when('/group', {
-                templateUrl: 'view/group.html',
-                controller: 'groupCtrl'
-            })
-            .when('/board', {
-                templateUrl: 'view/board.html',
-                controller: 'boardCtrl'
-            })
-            .when('/classify', {
-                templateUrl: 'view/classify.html',
-                controller: 'classifyCtrl'
-            })
-            .when('/from', {
-                templateUrl: 'view/from.html',
-                controller: 'fromCtrl'
-            })
-            .when('/content', {
-                templateUrl: 'view/content.html',
-                controller: 'contentCtrl'
-            })
-            .when('/editor', {
-                templateUrl: 'view/editor.html',
-                controller: 'editorCtrl'
-            })
-            .when('/err', {
-                templateUrl: 'view/err.html',
-                controller: 'errCtrl'
-            })
-            .otherwise({
-                redirectTo: '/err'
-            });
+        // .when('/', {
+        //     templateUrl: 'view/main.html',
+        //     controller: 'mainCtrl'
+        // })
+        // .when('/user', {
+        //     templateUrl: 'view/user.html',
+        //     controller: 'userCtrl'
+        // })
+        // .when('/group', {
+        //     templateUrl: 'view/group.html',
+        //     controller: 'groupCtrl'
+        // })
+        // .when('/board', {
+        //     templateUrl: 'view/board.html',
+        //     controller: 'boardCtrl'
+        // })
+        // .when('/classify', {
+        //     templateUrl: 'view/classify.html',
+        //     controller: 'classifyCtrl'
+        // })
+        // .when('/from', {
+        //     templateUrl: 'view/from.html',
+        //     controller: 'fromCtrl'
+        // })
+        // .when('/content', {
+        //     templateUrl: 'view/content.html',
+        //     controller: 'contentCtrl'
+        // })
+        // .when('/editor', {
+        //     templateUrl: 'view/editor.html',
+        //     controller: 'editorCtrl'
+        // })
+        // .when('/err', {
+        //     templateUrl: 'view/err.html',
+        //     controller: 'errCtrl'
+        // })
+        // .otherwise({
+        //     redirectTo: '/err'
+        // });
+            .when('/:plugin', {
+            templateUrl: function(rd) {
+                nRd = rd;
+                return "view/" + rd.plugin + ".html";
+            },
+            resolve: {
+                load: function($q, $route, $rootScope) {
+                    console.log($route);
+                    var deferred = $q.defer();
+                    var dependencies = [
+                        'plugin/' + $route.current.params.plugin + '/controller.js'
+                    ];
+                    $script(dependencies, function() {
+                        $rootScope.$apply(function() {
+                            deferred.resolve();
+                        });
+                    });
+                    return deferred.promise;
+                }
+            }
+        });
     });
+    // yy 2016/11/25
+    // 过滤 0 1
+    // routingDemoApp.service('transfer01', function() {
+    //     this.transfer = function(x) {
+    //         if (x === 0) {
+    //             return "check_no";
+    //         } else {
+    //             return "check_yes";
+    //         }
+    //     }
+    // });
+    routingDemoApp.filter('myTransfer', function() {
+        return function(x) {
+            // return transfer01.transfer(x);
+            if (x === 0 || x === "0") {
+                return "check_no";
+            } else {
+                return "check_yes";
+            }
+        };
+    });
+    // yy end
     routingDemoApp.controller('mainCtrl', function($scope) {});
     routingDemoApp.controller('errCtrl', function($scope) {});
 
@@ -195,8 +240,9 @@
             boardId: '3',
             boardName: 'TV下载'
         }];
-        $scope.showPop = function() {
+        $scope.showPop = function(groupID) {
             $scope.groupuser = false;
+            $scope.selectGroupID = groupID;
             $scope.userAccount = '';
             $scope.userName = '';
             $scope.users = [];
@@ -206,6 +252,7 @@
         };
         $scope.showGroupUser = function(userAccount, userName) {
             // 此处获取数据
+            // $scope.selectGroupID,userAccount,userName
             $scope.users = [{
                 userId: '292',
                 userAccount: '0.倩',

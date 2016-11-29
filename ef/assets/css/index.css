@@ -15,6 +15,10 @@
     cursor: pointer;
 }
 
+.cursorpoint:hover {
+    text-decoration: underline;
+}
+
 
 /* -----左侧固定menu开始----- */
 
@@ -193,7 +197,7 @@ body {
     background-color: #FFF;
     /*padding: 10px;*/
     /*box-sizing:border-box;
-	padding-left: calc(100vw - 100%);*/
+    padding-left: calc(100vw - 100%);*/
     position: relative;
 }
 
@@ -614,3 +618,45 @@ h4 {
     width: 100%;
     height: 400px;
 }
+
+
+/*yy_add 2016/11/27*/
+
+.check_yes:after {
+    content: "";
+    position: absolute;
+    /*right: 12px;*/
+    /*left: 2px;bottom: 12px;*/
+    width: 9px;
+    height: 4px;
+    border: 2px solid #9A9484;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    -ms-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.check_no:before {
+    content: "|";
+    position: absolute;
+    color: #9A9484;
+    -ms-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.check_no:after {
+    content: "|";
+    position: absolute;
+    color: #9A9484;
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/*yy_add end*/
